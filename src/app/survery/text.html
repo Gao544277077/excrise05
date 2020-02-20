@@ -1,0 +1,53 @@
+<form [formGroup]='dataForm' (ngSubmit)='submitForm()'>
+    Full name:<br/>
+    <input formControlName='fullName' type='text'/>
+    <span style="color:red" [hidden]='dataForm.controls.name.valid || dataForm.controls.name.untouched'>Please enter your name</span>
+    <br/>
+    Email: <br/>
+    <input formControlName='email' type='email' />
+    <span style="color:red" [hidden]='dataForm.controls.email.valid  || dataForm.controls.email.untouched'>Please enter your email</span>
+    <br/>
+    Age:<br/>
+    <input formControlName='age' min=10 max=100 type='number'/>
+    <span style="color:red" [hidden]='dataForm.controls.age.valid  || dataForm.controls.age.untouched' >Please enter your age
+    </span>
+    <span style="color: red" [hidden]='age>10 && age < 100'>(10-100)</span>
+    <br/>
+    State:<br/>
+    <select formControlName='state' >
+    <option *ngFor="let c of states" [ngValue]="c">{{c}}</option>
+    </select><br/>
+    <br/>
+    what is your favorite ice cream:<br/>
+    <select formControlName='ice_cream'>
+    <option *ngFor="let c of icecreams" [ngValue]="c">{{c}}
+    </option>
+    </select><br/>
+    <span [hidden]='dataForm.controls.ice_cream==="a"||dataForm.controls.ice_cream==="b"||dataForm.controls.ice_cream==="c"'>
+      Enter the name of ice cream<br/>
+    <input type="text" name='ice_cream'  [(ngModel)]= 'data.ice_cream'>
+    <br/>
+  </span>
+    what's your favorite meal<br/>
+    <input type='radio' formControlName='meal' value='breakfast' />breakfast
+    <input type='radio' formControlName='meal' value='lunch' />lunch
+    <input type='radio' formControlName='meal' value='dinner' />dinner
+    <br/>
+    how many cups of coffee do you drink on average every day: <br/>
+    <input type='number' formControlName='meal'/>
+    <br/>
+    what type of music is your favorite music<br/>
+    <input type='radio' formControlName='music' value='rock' />rock
+    <input type='radio' formControlName='music' value='pop' />pop
+    <input type='radio' formControlName='music' value='classical' />classical
+    <input type='radio' formControlName='music' value='metal' />metal
+    <input type='radio' formControlName='music' value='country' />country
+    <br/>
+    what is your favorite movie: <br/>
+    <input name='movie' type='text' formControlName='movie'/>
+    {{data.movie}}
+    <br/>
+    <span >
+      <button name='submit' [disabled]='dataForm.invalid'>Submit</button>
+    </span>
+    </form>
